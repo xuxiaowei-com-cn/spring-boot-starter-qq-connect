@@ -132,6 +132,19 @@
 
 ## [代码格式规范 spring-javaformat](https://github.com/spring-io/spring-javaformat)
 
+- IntelliJ IDEA
+  -
+  项目添加 [io.spring.javaformat:spring-javaformat-maven-plugin](https://repo1.maven.org/maven2/io/spring/javaformat/spring-javaformat-maven-plugin)
+  依赖之后，可安装自动格式化插件（无需运行下列命令）：[spring-javaformat-intellij-idea-plugin](https://repo1.maven.org/maven2/io/spring/javaformat/spring-javaformat-intellij-idea-plugin)
+
+  ```shell
+  ./mvnw spring-javaformat:apply
+  ```
+  或
+  ```shell
+  mvn spring-javaformat:apply
+  ```
+
 ## 参考文档
 
 - [使用authorization_code获取access_token](https://wiki.connect.qq.com/%e4%bd%bf%e7%94%a8authorization_code%e8%8e%b7%e5%8f%96access_token)
