@@ -145,6 +145,18 @@
   mvn spring-javaformat:apply
   ```
 
+## 批量添加远端仓库地址
+
+<details>
+<summary>点击展开</summary>
+git remote add gitee https://gitee.com/xuxiaowei-com-cn/spring-boot-starter-qq-connect.git
+git remote add gitlab https://gitlab.com/xuxiaowei-com-cn/spring-boot-starter-qq-connect.git
+git remote add jihulab https://jihulab.com/xuxiaowei-com-cn/spring-boot-starter-qq-connect.git
+git remote add github https://github.com/xuxiaowei-com-cn/spring-boot-starter-qq-connect.git
+git remote add gitcode https://gitcode.net/xuxiaowei-com-cn/spring-boot-starter-qq-connect.git
+git remote add gitlink https://gitlink.org.cn/xuxiaowei-com-cn/spring-boot-starter-qq-connect.git
+</details>
+
 ## 参考文档
 
 - [使用authorization_code获取access_token](https://wiki.connect.qq.com/%e4%bd%bf%e7%94%a8authorization_code%e8%8e%b7%e5%8f%96access_token)
