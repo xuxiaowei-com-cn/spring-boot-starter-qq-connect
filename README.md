@@ -167,7 +167,9 @@ git remote add gitlink https://gitlink.org.cn/xuxiaowei-com-cn/spring-boot-start
 ## 参考文档
 
 - [使用authorization_code获取access_token](https://wiki.connect.qq.com/%e4%bd%bf%e7%94%a8authorization_code%e8%8e%b7%e5%8f%96access_token)
+- [获取用户OpenID_OAuth2.0](https://wiki.connect.qq.com/%e8%8e%b7%e5%8f%96%e7%94%a8%e6%88%b7openid_oauth2-0)
 - [UnionID介绍](https://wiki.connect.qq.com/unionid%E4%BB%8B%E7%BB%8D)
+- [get_user_info](https://wiki.connect.qq.com/get_user_info)
 
 ## 鸣谢
 

@@ -1,0 +1,5 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  org.springframework.security.oauth2.server.authorization.http.QQWebsiteAuthorizeHttpFilter,\
+  org.springframework.security.oauth2.server.authorization.http.QQWebsiteCodeHttpFilter,\
+  org.springframework.security.oauth2.server.authorization.config.annotation.web.configuration.OAuth2QQWebsiteConfiguration,\
+  org.springframework.security.oauth2.server.authorization.properties.QQWebsiteProperties
