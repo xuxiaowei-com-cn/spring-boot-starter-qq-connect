@@ -19,23 +19,6 @@ public interface OAuth2QQParameterNames {
 	String APPID = "appid";
 
 	/**
-	 * AppSecret
-	 *
-	 * @see <a href=
-	 * "https://wiki.connect.qq.com/%e4%bd%bf%e7%94%a8authorization_code%e8%8e%b7%e5%8f%96access_token">使用Authorization_Code获取Access_Token</a>
-	 *
-	 */
-	String SECRET = "secret";
-
-	/**
-	 * @see OAuth2ParameterNames#CODE
-	 *
-	 * @see <a href=
-	 * "https://wiki.connect.qq.com/%e4%bd%bf%e7%94%a8authorization_code%e8%8e%b7%e5%8f%96access_token">使用Authorization_Code获取Access_Token</a>
-	 */
-	String CODE = "code";
-
-	/**
 	 * 用户唯一标识
 	 *
 	 * @see <a href=

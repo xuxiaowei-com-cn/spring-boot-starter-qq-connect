@@ -240,7 +240,7 @@ public class InMemoryQQWebsiteService implements QQWebsiteService {
 		String secret = getSecretByAppid(appid);
 
 		uriVariables.put(OAuth2ParameterNames.CLIENT_SECRET, secret);
-		uriVariables.put(OAuth2QQParameterNames.CODE, code);
+		uriVariables.put(OAuth2ParameterNames.CODE, code);
 
 		RestTemplate restTemplate = new RestTemplate();
 		List<HttpMessageConverter<?>> messageConverters = restTemplate.getMessageConverters();
