@@ -116,18 +116,23 @@ public class QQWebsiteAuthorizeHttpFilter extends HttpFilter {
 
 			String binding = request.getParameter(OAuth2QQParameterNames.BINDING);
 			String scope = request.getParameter(OAuth2ParameterNames.SCOPE);
-
-			List<String> scopeList = Splitter.on(",").trimResults().splitToList(scope);
-			List<String> legalList = Arrays.asList(GET_USER_INFO, ADD_TOPIC, ADD_ONE_BLOG, ADD_ALBUM, UPLOAD_PIC,
-					LIST_ALBUM, ADD_SHARE, CHECK_PAGE_FANS, GET_TENPAY_ADDR);
-			Set<String> scopeResultSet = new HashSet<>();
-			scopeResultSet.add(GET_USER_INFO);
-			for (String sc : scopeList) {
-				if (legalList.contains(sc)) {
-					scopeResultSet.add(sc);
-				}
+			String scopeResult;
+			if (scope == null) {
+				scopeResult = GET_USER_INFO;
 			}
-			String scopeResult = Joiner.on(",").join(scopeResultSet);
+			else {
+				List<String> scopeList = Splitter.on(",").trimResults().splitToList(scope);
+				List<String> legalList = Arrays.asList(GET_USER_INFO, ADD_TOPIC, ADD_ONE_BLOG, ADD_ALBUM, UPLOAD_PIC,
+						LIST_ALBUM, ADD_SHARE, CHECK_PAGE_FANS, GET_TENPAY_ADDR);
+				Set<String> scopeResultSet = new HashSet<>();
+				scopeResultSet.add(GET_USER_INFO);
+				for (String sc : scopeList) {
+					if (legalList.contains(sc)) {
+						scopeResultSet.add(sc);
+					}
+				}
+				scopeResult = Joiner.on(",").join(scopeResultSet);
+			}
 
 			String state = qqWebsiteService.stateGenerate(request, response, appid);
 			qqWebsiteService.storeBinding(request, response, appid, state, binding);
