@@ -93,9 +93,11 @@ public class OAuth2QQWebsiteAuthenticationConverter implements AuthenticationCon
 		parameters.forEach((key, value) -> {
 			if (!key.equals(OAuth2ParameterNames.GRANT_TYPE) && !key.equals(OAuth2ParameterNames.CLIENT_ID)
 					&& !key.equals(OAuth2ParameterNames.CODE) && !key.equals(OAuth2ParameterNames.REDIRECT_URI)
-					&& !key.equals(OAuth2ParameterNames.CLIENT_SECRET) && !key.equals(OAuth2QQWebsiteParameterNames.APPID)
-					&& !key.equals(OAuth2ParameterNames.SCOPE) && !OAuth2QQWebsiteParameterNames.REMOTE_ADDRESS.equals(key)
-					&& !OAuth2QQWebsiteParameterNames.SESSION_ID.equals(key) && !OAuth2QQWebsiteParameterNames.BINDING.equals(key)) {
+					&& !key.equals(OAuth2ParameterNames.CLIENT_SECRET)
+					&& !key.equals(OAuth2QQWebsiteParameterNames.APPID) && !key.equals(OAuth2ParameterNames.SCOPE)
+					&& !OAuth2QQWebsiteParameterNames.REMOTE_ADDRESS.equals(key)
+					&& !OAuth2QQWebsiteParameterNames.SESSION_ID.equals(key)
+					&& !OAuth2QQWebsiteParameterNames.BINDING.equals(key)) {
 				additionalParameters.put(key, value.get(0));
 			}
 		});
