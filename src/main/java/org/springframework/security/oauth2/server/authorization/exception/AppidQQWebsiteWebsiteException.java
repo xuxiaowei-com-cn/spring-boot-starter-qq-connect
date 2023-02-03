@@ -9,9 +9,9 @@ package org.springframework.security.oauth2.server.authorization.exception;
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -20,40 +20,34 @@ package org.springframework.security.oauth2.server.authorization.exception;
  * #L%
  */
 
-import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.OAuth2Error;
 
 /**
- * QQ开放平台父异常
+ * QQ开放平台 AppID 异常
  *
  * @author xuxiaowei
  * @since 0.0.1
  */
-public class QQException extends OAuth2AuthenticationException {
+public class AppidQQWebsiteWebsiteException extends QQWebsiteException {
 
-	public QQException(String errorCode) {
+	public AppidQQWebsiteWebsiteException(String errorCode) {
 		super(errorCode);
 	}
 
-	public QQException(OAuth2Error error) {
+	public AppidQQWebsiteWebsiteException(OAuth2Error error) {
 		super(error);
 	}
 
-	public QQException(OAuth2Error error, Throwable cause) {
+	public AppidQQWebsiteWebsiteException(OAuth2Error error, Throwable cause) {
 		super(error, cause);
 	}
 
-	public QQException(OAuth2Error error, String message) {
+	public AppidQQWebsiteWebsiteException(OAuth2Error error, String message) {
 		super(error, message);
 	}
 
-	public QQException(OAuth2Error error, String message, Throwable cause) {
+	public AppidQQWebsiteWebsiteException(OAuth2Error error, String message, Throwable cause) {
 		super(error, message, cause);
-	}
-
-	@Override
-	public OAuth2Error getError() {
-		return super.getError();
 	}
 
 }

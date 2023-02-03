@@ -27,7 +27,7 @@ import lombok.EqualsAndHashCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
-import org.springframework.security.oauth2.core.endpoint.OAuth2QQParameterNames;
+import org.springframework.security.oauth2.core.endpoint.OAuth2QQWebsiteParameterNames;
 import org.springframework.security.oauth2.server.authorization.client.QQWebsiteService;
 import org.springframework.security.oauth2.server.authorization.properties.QQWebsiteProperties;
 import org.springframework.stereotype.Component;
@@ -114,7 +114,7 @@ public class QQWebsiteAuthorizeHttpFilter extends HttpFilter {
 
 			String redirectUri = qqWebsiteService.getRedirectUriByAppid(appid);
 
-			String binding = request.getParameter(OAuth2QQParameterNames.BINDING);
+			String binding = request.getParameter(OAuth2QQWebsiteParameterNames.BINDING);
 			String scope = request.getParameter(OAuth2ParameterNames.SCOPE);
 			String scopeResult;
 			if (scope == null) {

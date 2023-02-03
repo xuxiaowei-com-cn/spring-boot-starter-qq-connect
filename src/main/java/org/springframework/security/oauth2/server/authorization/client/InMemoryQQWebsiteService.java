@@ -42,13 +42,13 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.OAuth2Error;
 import org.springframework.security.oauth2.core.endpoint.OAuth2AccessTokenResponse;
 import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
-import org.springframework.security.oauth2.core.endpoint.OAuth2QQParameterNames;
+import org.springframework.security.oauth2.core.endpoint.OAuth2QQWebsiteParameterNames;
 import org.springframework.security.oauth2.core.http.converter.OAuth2AccessTokenResponseHttpMessageConverter;
 import org.springframework.security.oauth2.server.authorization.config.annotation.web.configurers.OAuth2AuthorizationServerConfigurer;
 import org.springframework.security.oauth2.server.authorization.config.annotation.web.configurers.OAuth2TokenEndpointConfigurer;
-import org.springframework.security.oauth2.server.authorization.exception.AppidQQException;
-import org.springframework.security.oauth2.server.authorization.exception.RedirectQQException;
-import org.springframework.security.oauth2.server.authorization.exception.RedirectUriQQException;
+import org.springframework.security.oauth2.server.authorization.exception.AppidQQWebsiteWebsiteException;
+import org.springframework.security.oauth2.server.authorization.exception.RedirectQQWebsiteException;
+import org.springframework.security.oauth2.server.authorization.exception.RedirectUriQQWebsiteException;
 import org.springframework.security.oauth2.server.authorization.properties.QQWebsiteProperties;
 import org.springframework.security.oauth2.server.authorization.web.authentication.OAuth2QQWebsiteEndpointUtils;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
@@ -97,7 +97,7 @@ public class InMemoryQQWebsiteService implements QQWebsiteService {
 		}
 		else {
 			OAuth2Error error = new OAuth2Error(OAuth2QQWebsiteEndpointUtils.ERROR_CODE, "重定向地址前缀不能为空", null);
-			throw new RedirectUriQQException(error);
+			throw new RedirectUriQQWebsiteException(error);
 		}
 	}
 
@@ -185,7 +185,7 @@ public class InMemoryQQWebsiteService implements QQWebsiteService {
 		List<QQWebsiteProperties.QQWebsite> list = qqWebsiteProperties.getList();
 		if (list == null) {
 			OAuth2Error error = new OAuth2Error(OAuth2QQWebsiteEndpointUtils.ERROR_CODE, "appid 未配置", null);
-			throw new AppidQQException(error);
+			throw new AppidQQWebsiteWebsiteException(error);
 		}
 
 		for (QQWebsiteProperties.QQWebsite qqWebsite : list) {
@@ -194,7 +194,7 @@ public class InMemoryQQWebsiteService implements QQWebsiteService {
 			}
 		}
 		OAuth2Error error = new OAuth2Error(OAuth2QQWebsiteEndpointUtils.ERROR_CODE, "未匹配到 appid", null);
-		throw new AppidQQException(error);
+		throw new AppidQQWebsiteWebsiteException(error);
 	}
 
 	/**
@@ -323,7 +323,7 @@ public class InMemoryQQWebsiteService implements QQWebsiteService {
 		}
 
 		accessTokenVariables.put(OAuth2ParameterNames.CLIENT_ID, clientId);
-		accessTokenVariables.put(OAuth2QQParameterNames.OPENID, openid);
+		accessTokenVariables.put(OAuth2QQWebsiteParameterNames.OPENID, openid);
 		String userinfoObject = restTemplate.getForObject(userinfoUrl, String.class, accessTokenVariables);
 
 		QQWebsiteTokenResponse userinfoResponse;
@@ -435,7 +435,7 @@ public class InMemoryQQWebsiteService implements QQWebsiteService {
 		}
 		catch (IOException e) {
 			OAuth2Error error = new OAuth2Error(OAuth2QQWebsiteEndpointUtils.ERROR_CODE, "QQ开放平台 网站应用重定向异常", null);
-			throw new RedirectQQException(error, e);
+			throw new RedirectQQWebsiteException(error, e);
 		}
 
 	}
