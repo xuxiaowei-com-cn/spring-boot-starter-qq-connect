@@ -9,9 +9,9 @@ package org.springframework.security.oauth2.server.authorization.web.authenticat
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,7 +25,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.oauth2.core.OAuth2ErrorCodes;
 import org.springframework.security.oauth2.core.endpoint.OAuth2ParameterNames;
-import org.springframework.security.oauth2.core.endpoint.OAuth2QQParameterNames;
+import org.springframework.security.oauth2.core.endpoint.OAuth2QQWebsiteParameterNames;
 import org.springframework.security.oauth2.server.authorization.authentication.OAuth2AuthorizationCodeAuthenticationToken;
 import org.springframework.security.oauth2.server.authorization.authentication.OAuth2ClientCredentialsAuthenticationToken;
 import org.springframework.security.oauth2.server.authorization.authentication.OAuth2QQWebsiteAuthenticationToken;
@@ -74,10 +74,10 @@ public class OAuth2QQWebsiteAuthenticationConverter implements AuthenticationCon
 		}
 
 		// appid (REQUIRED)
-		String appid = parameters.getFirst(OAuth2QQParameterNames.APPID);
+		String appid = parameters.getFirst(OAuth2QQWebsiteParameterNames.APPID);
 
-		if (!StringUtils.hasText(appid) || parameters.get(OAuth2QQParameterNames.APPID).size() != 1) {
-			OAuth2EndpointUtils.throwError(OAuth2ErrorCodes.INVALID_REQUEST, OAuth2QQParameterNames.APPID,
+		if (!StringUtils.hasText(appid) || parameters.get(OAuth2QQWebsiteParameterNames.APPID).size() != 1) {
+			OAuth2EndpointUtils.throwError(OAuth2ErrorCodes.INVALID_REQUEST, OAuth2QQWebsiteParameterNames.APPID,
 					OAuth2QQWebsiteEndpointUtils.AUTH_CODE2SESSION_URI);
 		}
 
@@ -87,21 +87,23 @@ public class OAuth2QQWebsiteAuthenticationConverter implements AuthenticationCon
 		String state = parameters.getFirst(OAuth2ParameterNames.STATE);
 
 		// 是否绑定，需要使用者自己去拓展
-		String binding = request.getParameter(OAuth2QQParameterNames.BINDING);
+		String binding = request.getParameter(OAuth2QQWebsiteParameterNames.BINDING);
 
 		Map<String, Object> additionalParameters = new HashMap<>(4);
 		parameters.forEach((key, value) -> {
 			if (!key.equals(OAuth2ParameterNames.GRANT_TYPE) && !key.equals(OAuth2ParameterNames.CLIENT_ID)
 					&& !key.equals(OAuth2ParameterNames.CODE) && !key.equals(OAuth2ParameterNames.REDIRECT_URI)
-					&& !key.equals(OAuth2ParameterNames.CLIENT_SECRET) && !key.equals(OAuth2QQParameterNames.APPID)
-					&& !key.equals(OAuth2ParameterNames.SCOPE) && !OAuth2QQParameterNames.REMOTE_ADDRESS.equals(key)
-					&& !OAuth2QQParameterNames.SESSION_ID.equals(key) && !OAuth2QQParameterNames.BINDING.equals(key)) {
+					&& !key.equals(OAuth2ParameterNames.CLIENT_SECRET)
+					&& !key.equals(OAuth2QQWebsiteParameterNames.APPID) && !key.equals(OAuth2ParameterNames.SCOPE)
+					&& !OAuth2QQWebsiteParameterNames.REMOTE_ADDRESS.equals(key)
+					&& !OAuth2QQWebsiteParameterNames.SESSION_ID.equals(key)
+					&& !OAuth2QQWebsiteParameterNames.BINDING.equals(key)) {
 				additionalParameters.put(key, value.get(0));
 			}
 		});
 
-		String remoteAddress = request.getParameter(OAuth2QQParameterNames.REMOTE_ADDRESS);
-		String sessionId = request.getParameter(OAuth2QQParameterNames.SESSION_ID);
+		String remoteAddress = request.getParameter(OAuth2QQWebsiteParameterNames.REMOTE_ADDRESS);
+		String sessionId = request.getParameter(OAuth2QQWebsiteParameterNames.SESSION_ID);
 
 		return new OAuth2QQWebsiteAuthenticationToken(clientPrincipal, additionalParameters, appid, code, scope,
 				remoteAddress, sessionId, state, binding);
